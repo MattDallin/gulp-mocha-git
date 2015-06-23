@@ -11,6 +11,7 @@ gulp.task('run tests', function(){
     .on('error', function (err) {
 
       if (err.toString().match(/mocha\/lib\/mocha\.js/)) {
+
         var stream = fs.createWriteStream('log/gulp.log', {'flags': 'a'});
 
         stream.end(err.toString(), 'utf8', function () {
@@ -40,9 +41,7 @@ gulp.task('push to git', ['run tests'], function(){
     .on('error', function(err){
       console.log(err.toString())
     });
-
-    git.push(gitOrigin, gitBranch, {}, function (err) {
-      console.log('pushed');
-      if (err) throw err;
-    });
+  git.push(gitOrigin, gitBranch, {}, function (err) {
+    if (err) throw err;
+  });
 });
