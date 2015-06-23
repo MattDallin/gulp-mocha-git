@@ -1,3 +1,3 @@
 # gulp-mocha-git
 
-run mocha tests and push to git if they pass
+Run mocha tests and push to git if they pass. Also, log any mocha errors to log/gulp.log
