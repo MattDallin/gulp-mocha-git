@@ -42,7 +42,11 @@ gulp.task('push to git', ['run tests'], function(){
   gulp.src('./*')
     .pipe(git.add({args: '--all'}))
     .pipe(git.commit('gulp commit - ' + new Date(), {disableAppendPaths: true, disableMessageRequirement: false}))
-    .on('error', function(err){console.log(err.toString())});
+    .on('error', function(err){
+      console.log('----------------------------------------------------------------------------');
+      console.log('[ ' + new Date() + ' ]');
+      console.log(err.toString())
+    });
 
     console.log('ready to push');
     git.push(gitOrigin, gitBranch, {}, function (err) {
