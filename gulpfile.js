@@ -41,6 +41,7 @@ gulp.task('push to git', ['run tests'], function(){
   //});
   gulp.src('./*')
     .pipe(git.add({args: '--all'}))
-    .pipe(git.commit('gulp commit', {disableAppendPaths: true, disableMessageRequirement: false}))
-    .pipe(git.push(gitOrigin, gitBranch, {args: ''}));
+    .pipe(git.commit('gulp commit', {disableAppendPaths: true, disableMessageRequirement: false}));
+
+  git.push(gitOrigin, gitBranch, {args: ''})
 });
