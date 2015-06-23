@@ -41,10 +41,10 @@ gulp.task('push to git', ['run tests'], function(){
     .on('error', function(err){
       console.log(err.toString())
     });
-
-    console.log('ready to push');
     git.push(gitOrigin, gitBranch, {}, function (err) {
-      console.log('pushed');
-      if (err) throw err;
+      if (err) {
+        throw err;
+        console.log(err.toString());
+      }
     });
 });
