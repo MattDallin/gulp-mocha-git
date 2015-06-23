@@ -3,7 +3,7 @@ var mocha = require('gulp-mocha');
 var fs = require('fs');
 var git = require('gulp-git');
 
-gulp.task('default', ['run tests', 'push to git']);
+gulp.task('default', ['run tests', 'commit', 'push to git']);
 
 gulp.task('run tests', function(){
   return gulp.src('test/*')
@@ -23,7 +23,16 @@ gulp.task('run tests', function(){
     });
 });
 
-gulp.task('push to git', ['run tests'], function(){
+gulp.task('commit', ['run tests'], function(){
+  gulp.src('./*')
+    .pipe(git.add({args: '--all'}))
+    .pipe(git.commit('gulp commit - ' + new Date(), {disableAppendPaths: true, disableMessageRequirement: false}))
+    .on('error', function(err){
+      console.log(err.toString());
+    });
+});
+
+gulp.task('push to git', ['commit'], function(){
   var gitRepoUrl = 'github.com/mattdallin/gulp-mocha-git';
   var gitBranch = 'master';
   var gitOrigin = 'https://' + gitRepoUrl;
@@ -31,12 +40,6 @@ gulp.task('push to git', ['run tests'], function(){
   //var gitPassword = '';
   //var gitOrigin = 'https://' + gitUsername + ':' + gitPassword + '@' + gitRepoUrl;
 
-  gulp.src('./*')
-    .pipe(git.add({args: '--all'}))
-    .pipe(git.commit('gulp commit - ' + new Date(), {disableAppendPaths: true, disableMessageRequirement: false}))
-    .on('error', function(err){
-      console.log(err.toString());
-    });
   git.push(gitOrigin, gitBranch, {}, function (err) {
     if (err) throw err;
   });
