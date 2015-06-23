@@ -32,6 +32,7 @@
       .pipe(git.commit('gulp commit - ' + new Date(), {disableAppendPaths: true, disableMessageRequirement: false}))
       .on('error', function(err){
         console.log(err.toString());
+        console.log('Do you have changes to commit?');
       });
   });
 
