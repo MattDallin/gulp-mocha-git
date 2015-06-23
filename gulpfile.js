@@ -44,7 +44,6 @@
     //var gitUsername = '';
     //var gitPassword = '';
     //var gitOrigin = 'https://' + gitUsername + ':' + gitPassword + '@' + gitRepoUrl;
-
     git.push(gitOrigin, gitBranch, {}, function (err) {
       if (err) throw err;
     });
