@@ -32,7 +32,7 @@ gulp.task('push to git', ['run tests'], function(){
   //var gitUsername = '';
   //var gitPassword = '';
   var gitRepoUrl = 'github.com/mattdallin/gulp-mocha-git';
-  var gitBranch = 'origin/master';
+  var gitBranch = 'master';
   var gitOrigin = 'https://' + gitRepoUrl;
   //var gitOrigin = 'https://' + gitUsername + ':' + gitPassword + '@' + gitRepoUrl;
   //git.status({args : '--porcelain'}, function (err, stdout) {
@@ -43,9 +43,6 @@ gulp.task('push to git', ['run tests'], function(){
     .pipe(git.add({args: '--all'}))
     .pipe(git.commit('gulp commit - ' + new Date(), {disableAppendPaths: true, disableMessageRequirement: false}))
     .on('error', function(err){
-      console.log('----------------------------------------------------------------------------');
-      console.log('[ ' + new Date() + ' ]');
-      console.log('----------------------------------------------------------------------------');
       console.log(err.toString())
     });
 
