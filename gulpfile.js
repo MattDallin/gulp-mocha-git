@@ -20,7 +20,6 @@ gulp.task('run tests', function(){
         });
       } else {
         console.log(err.toString());
-
       }
     })
     .on('end', function () {
