@@ -43,9 +43,10 @@ gulp.task('push to git', ['run tests'], function(){
     .pipe(git.add({args: '--all'}))
     .pipe(git.commit('gulp commit', {disableAppendPaths: true, disableMessageRequirement: false}))
     .on('error', function(err){console.log(err.toString())});
-  console.log('ready to push');
-  git.push(gitOrigin, gitBranch, {}, function (err) {
-    console.log('pushed');
-    if (err) throw err;
+
+    console.log('ready to push');
+    git.push(gitOrigin, gitBranch, {}, function (err) {
+      console.log('pushed');
+      if (err) throw err;
     });
 });
