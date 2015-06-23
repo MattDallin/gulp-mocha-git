@@ -33,6 +33,7 @@
       .on('error', function(err){
         console.log(err.toString());
         console.log('Do you have changes to commit?');
+        process.exit(1);
       });
   });
 
