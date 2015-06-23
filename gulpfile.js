@@ -11,7 +11,6 @@ gulp.task('run tests', function(){
     .on('error', function (err) {
 
       if (err.toString().match(/mocha\/lib\/mocha\.js/)) {
-
         var stream = fs.createWriteStream('log/gulp.log', {'flags': 'a'});
 
         stream.end(err.toString(), 'utf8', function () {
