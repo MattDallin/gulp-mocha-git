@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var fs = require('fs');
 var git = require('gulp-git');
-var gutil = require('gulp-util');
 
 gulp.task('default', ['run tests', 'push to git']);
 
