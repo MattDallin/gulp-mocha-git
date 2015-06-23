@@ -35,10 +35,6 @@ gulp.task('push to git', ['run tests'], function(){
   var gitBranch = 'gulp-automated';
   var gitOrigin = 'https://' + gitRepoUrl;
   //var gitOrigin = 'https://' + gitUsername + ':' + gitPassword + '@' + gitRepoUrl;
-  //git.status({args : '--porcelain'}, function (err, stdout) {
-  //  // if (err) ...
-  //  console.log(stdout);
-  //});
   gulp.src('./*')
     .pipe(git.add({args: '--all'}))
     .pipe(git.commit('gulp commit - ' + new Date(), {disableAppendPaths: true, disableMessageRequirement: false}))
