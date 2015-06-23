@@ -28,12 +28,13 @@ gulp.task('run tests', function(){
 });
 
 gulp.task('push to git', ['run tests'], function(){
-  //var gitUsername = '';
-  //var gitPassword = '';
   var gitRepoUrl = 'github.com/mattdallin/gulp-mocha-git';
   var gitBranch = 'gulp-automated';
   var gitOrigin = 'https://' + gitRepoUrl;
+  //var gitUsername = '';
+  //var gitPassword = '';
   //var gitOrigin = 'https://' + gitUsername + ':' + gitPassword + '@' + gitRepoUrl;
+
   gulp.src('./*')
     .pipe(git.add({args: '--all'}))
     .pipe(git.commit('gulp commit - ' + new Date(), {disableAppendPaths: true, disableMessageRequirement: false}))
@@ -41,9 +42,6 @@ gulp.task('push to git', ['run tests'], function(){
       console.log(err.toString())
     });
     git.push(gitOrigin, gitBranch, {}, function (err) {
-      if (err) {
-        throw err;
-        console.log(err.toString());
-      }
+      if (err) throw err;
     });
 });
