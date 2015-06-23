@@ -20,7 +20,6 @@ gulp.task('run tests', function(){
         });
       } else {
         console.log(err.toString());
-
       }
     })
     .on('end', function () {
@@ -29,16 +28,13 @@ gulp.task('run tests', function(){
 });
 
 gulp.task('push to git', ['run tests'], function(){
-  //var gitUsername = '';
-  //var gitPassword = '';
   var gitRepoUrl = 'github.com/mattdallin/gulp-mocha-git';
   var gitBranch = 'master';
   var gitOrigin = 'https://' + gitRepoUrl;
+  //var gitUsername = '';
+  //var gitPassword = '';
   //var gitOrigin = 'https://' + gitUsername + ':' + gitPassword + '@' + gitRepoUrl;
-  //git.status({args : '--porcelain'}, function (err, stdout) {
-  //  // if (err) ...
-  //  console.log(stdout);
-  //});
+
   gulp.src('./*')
     .pipe(git.add({args: '--all'}))
     .pipe(git.commit('gulp commit - ' + new Date(), {disableAppendPaths: true, disableMessageRequirement: false}))
@@ -46,7 +42,6 @@ gulp.task('push to git', ['run tests'], function(){
       console.log(err.toString())
     });
 
-    console.log('ready to push');
     git.push(gitOrigin, gitBranch, {}, function (err) {
       console.log('pushed');
       if (err) throw err;
