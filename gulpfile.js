@@ -8,7 +8,7 @@ gulp.task('default', ['run tests', 'push to git']);
 gulp.task('run tests', function(){
   return gulp.src('test/*')
     .pipe(mocha())
-    .once('error', function (err) {
+    .on('error', function (err) {
 
       if (err.toString().match(/mocha\/lib\/mocha\.js/)) {
 
@@ -18,9 +18,12 @@ gulp.task('run tests', function(){
           console.log('mocha error logged');
           process.exit(1);
         });
+      } else {
+        console.log(err.toString());
+
       }
     })
-    .once('end', function () {
+    .on('end', function () {
       console.log('tests ran successfully');
     });
 });
@@ -32,14 +35,12 @@ gulp.task('push to git', ['run tests'], function(){
   var gitBranch = 'gulp-automated';
   var gitOrigin = 'https://' + gitRepoUrl;
   //var gitOrigin = 'https://' + gitUsername + ':' + gitPassword + '@' + gitRepoUrl;
-  git.status({args : '--porcelain'}, function (err, stdout) {
-    // if (err) ...
-    console.log(stdout);
-  });
+  //git.status({args : '--porcelain'}, function (err, stdout) {
+  //  // if (err) ...
+  //  console.log(stdout);
+  //});
   gulp.src('./*')
-    .pipe(git.add({args: '--all'}));
-
-  gulp.src('./*')
-    .pipe(git.commit('gulp commit'))
-    .pipe(git.push(gitOrigin, gitBranch, {args: ''}));
+    .pipe(git.add({args: '--all'}))
+    .pipe(git.commit('gulp commit', {disableAppendPaths: true, disableMessageRequirement: false}));
+    //.pipe(git.push(gitOrigin, gitBranch, {args: ''}));
 });
