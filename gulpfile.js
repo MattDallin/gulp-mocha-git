@@ -32,7 +32,7 @@ gulp.task('push to git', ['run tests'], function(){
   //var gitUsername = '';
   //var gitPassword = '';
   var gitRepoUrl = 'github.com/mattdallin/gulp-mocha-git';
-  var gitBranch = 'origin/gulp-automated';
+  var gitBranch = 'origin/master';
   var gitOrigin = 'https://' + gitRepoUrl;
   //var gitOrigin = 'https://' + gitUsername + ':' + gitPassword + '@' + gitRepoUrl;
   //git.status({args : '--porcelain'}, function (err, stdout) {
