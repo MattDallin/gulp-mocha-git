@@ -43,7 +43,7 @@
     var gitRepoUrl = config.gitRepoUrl || false;
     var gitUsername = config.gitUsername || false;
     var gitPassword = config.gitPassword || false;
-    var gitOrigin = gitUserName ? 'https://' + gitUsername + ':' + gitPassword + '@' + gitRepoUrl : 'https://' + gitRepoUrl;
+    var gitOrigin = gitUsername ? 'https://' + gitUsername + ':' + gitPassword + '@' + gitRepoUrl : 'https://' + gitRepoUrl;
 
     git.push(gitOrigin, gitBranch, {}, function (err) {
       if (err) throw err;
