@@ -1,7 +1,6 @@
 {
   "gitUsername":"",
   "gitPassword":"",
-  "gitRepoUrl":"",
-  "gitBranch":"",
+  "gitRepoUrl":"github.com/mattdallin/gulp-mocha-git",
   "gitBranch":"master"
 }
