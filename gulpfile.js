@@ -38,6 +38,7 @@
 
   gulp.task('push to git', ['commit'], function(){
     var config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+    console.log(JSON.stringify(config));
     var gitBranch = config.gitBranch || 'master';
     var gitRepoUrl = config.gitRepoUrl || 'github.com/mattdallin/gulp-mocha-git';
     var gitUsername = config.gitUsername || false;
