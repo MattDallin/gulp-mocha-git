@@ -29,14 +29,10 @@
   gulp.task('commit', ['run tests'], function(){
     gulp.src('.')
       .pipe(git.add({args: '--all'}))
-      .pipe(git.commit('gulp commit - ' + new Date(), {disableAppendPaths: true, disableMessageRequirement: false}))
-      .on('error', function(err){
-        console.log(err.toString());
-        console.log('Do you have changes to commit?');
-      });
+      .pipe(git.commit('gulp commit - ' + new Date(), {disableAppendPaths: true, disableMessageRequirement: false}));
   });
 
-  gulp.task('push to git', ['commit'], function(){
+  gulp.task('push to git', ['run tests', 'commit'], function(){
     var config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
     var gitBranch = config.gitBranch || 'master';
     var gitRepoUrl = config.gitRepoUrl || 'github.com/mattdallin/gulp-mocha-git';
