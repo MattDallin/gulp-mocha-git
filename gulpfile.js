@@ -43,7 +43,9 @@
     var gitRepoUrl = config.gitRepoUrl || 'github.com/mattdallin/gulp-mocha-git';
     var gitUsername = config.gitUsername || false;
     var gitPassword = config.gitPassword || false;
-    var gitOrigin = gitUsername ? 'https://' + gitUsername + ':' + gitPassword + '@' + gitRepoUrl : 'https://' + gitRepoUrl;
+    var gitOrigin = (gitUsername && gitPassword)
+      ? 'https://' + gitUsername + ':' + gitPassword + '@' + gitRepoUrl
+      : 'https://' + gitRepoUrl;
 
     git.push(gitOrigin, gitBranch, {}, function (err) {
       if (err) throw err;
