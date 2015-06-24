@@ -1,4 +1,4 @@
 log/gulp.log
 node_modules/
 .idea
-
+config.json
