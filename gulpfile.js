@@ -38,12 +38,13 @@
   });
 
   gulp.task('push to git', ['commit'], function(){
-    var gitRepoUrl = 'github.com/mattdallin/gulp-mocha-git';
-    var gitBranch = 'master';
-    var gitOrigin = 'https://' + gitRepoUrl;
-    //var gitUsername = '';
-    //var gitPassword = '';
-    //var gitOrigin = 'https://' + gitUsername + ':' + gitPassword + '@' + gitRepoUrl;
+    var config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+    var gitBranch = config.gitBranch || 'master';
+    var gitRepoUrl = config.gitRepoUrl || false;
+    var gitUsername = config.gitUsername || false;
+    var gitPassword = config.gitPassword || false;
+    var gitOrigin = gitUserName ? 'https://' + gitUsername + ':' + gitPassword + '@' + gitRepoUrl : 'https://' + gitRepoUrl;
+
     git.push(gitOrigin, gitBranch, {}, function (err) {
       if (err) throw err;
     });
